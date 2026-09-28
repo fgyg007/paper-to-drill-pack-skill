@@ -1,0 +1,44 @@
+{
+  "packVersion": 1,
+  "id": "fixture-mcq-tiny",
+  "title": "Original tiny MCQ fixture",
+  "locale": "zh-CN",
+  "status": "candidate",
+  "problems": [
+    {
+      "id": "demo-read-001",
+      "type": "mcq",
+      "subject": "demo-reading",
+      "passage": "A family keeps a box of practice cards. Each card has one question and four answers. Only cards that passed a checklist go into the box.",
+      "stem": "What goes into the family box?",
+      "choices": [
+        { "id": "A", "text": "Any PDF page" },
+        { "id": "B", "text": "Cards that passed the checklist" },
+        { "id": "C", "text": "Answer keys only" },
+        { "id": "D", "text": "Unreviewed AI drafts" }
+      ],
+      "answer": "B",
+      "source": {
+        "kind": "original",
+        "title": "family-drill-lab fixture"
+      }
+    },
+    {
+      "id": "demo-math-001",
+      "type": "mcq",
+      "subject": "demo-math",
+      "stem": "What is 2 + 3?",
+      "choices": [
+        { "id": "A", "text": "4" },
+        { "id": "B", "text": "5" },
+        { "id": "C", "text": "6" },
+        { "id": "D", "text": "23" }
+      ],
+      "answer": "B",
+      "source": {
+        "kind": "original",
+        "title": "family-drill-lab fixture"
+      }
+    }
+  ]
+}

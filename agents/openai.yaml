@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper to Drill Pack"
+  short_description: "Convert PDF / Word / JPEG papers into family-drill-lab JSON"
+  default_prompt: "Use $paper-to-drill-pack to convert this paper into a family-drill pack JSON. Do not invent answers."

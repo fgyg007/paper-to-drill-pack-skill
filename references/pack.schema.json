@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://family-drill-lab.local/schema/pack.schema.json",
+  "title": "Family drill pack",
+  "type": "object",
+  "required": ["packVersion", "id", "problems"],
+  "additionalProperties": true,
+  "properties": {
+    "packVersion": { "const": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "locale": { "type": "string", "minLength": 2 },
+    "status": { "enum": ["candidate", "ready"] },
+    "problems": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/problem" }
+    }
+  },
+  "$defs": {
+    "problem": {
+      "type": "object",
+      "required": ["id", "type", "subject", "stem", "source"],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "type": {
+          "enum": ["mcq", "true_false", "fill", "listening_mcq"]
+        },
+        "subject": { "type": "string", "minLength": 1 },
+        "stem": { "type": "string", "minLength": 1 },
+        "passage": { "type": "string" },
+        "choices": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "required": ["id", "text"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1, "maxLength": 16 },
+              "text": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "answer": { "type": "string", "minLength": 1 },
+        "source": {
+          "type": "object",
+          "required": ["kind", "title"],
+          "properties": {
+            "kind": { "enum": ["original", "exam", "imported"] },
+            "title": { "type": "string", "minLength": 1 },
+            "locator": { "type": "string" }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "mcq" } }, "required": ["type"] },
+          "then": { "required": ["choices"] }
+        }
+      ]
+    }
+  }
+}
